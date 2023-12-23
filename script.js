@@ -25,7 +25,6 @@ function addBookToLibrary() {
     pages.value = "";
     read.value = "";
     }
-    console.log(myLibrary[0]);
 }
 
 function createForm() {
@@ -105,20 +104,25 @@ function createCard(i) {
     details.classList.add("details");
     let ops=document.createElement("div");
     ops.classList.add("ops")
-    ops.innerHTML=`<div class="edit">
-                        <i class="fi fi-rr-pencil"></i>
-                    </div>  
-                    <div class="delete">
-                        <i class="fi fi-rr-trash"></i>
-                    </div> `;
+    ops.innerHTML=`<i class="fi fi-rr-pencil edit"></i>`;
+
+    // Delete button
+    const deleteButton = document.createElement("i");
+    deleteButton.classList.add("fi","fi-rr-trash","delete");
+    deleteButton.addEventListener('click', ()=>{
+         books[0].removeChild(newCard);
+         myLibrary.splice(newCard,1);
+    })
+    ops.appendChild(deleteButton);
+
     title.textContent=myLibrary[i]["title"];
     author.textContent=myLibrary[i]["author"];
     pages.textContent=myLibrary[i]["pages"];
     status.textContent=myLibrary[i]["status"];
 
-    console.log(`${title},${author.textContent},${pages.textContent},${status.textContent}`);
-     details.appendChild(author);
-     details.appendChild(pages);
+    
+    details.appendChild(author);
+    details.appendChild(pages);
     details.appendChild(status);
     newCard.appendChild(title);
     newCard.appendChild(details);
