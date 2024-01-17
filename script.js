@@ -37,14 +37,14 @@ function createForm() {
     //Form
     form.innerHTML=`<div class="book-title">
     <label for="title">Title: </label>
-    <input type="text" id="title" name="title">
+    <input type="text" id="title" name="title" required>
     </div>
     <div class="book-author">
     <label for="author">Author:</label><br>
-    <input type="text" id="author" name="author">
+    <input type="text" id="author" name="author" required>
     </div>
     <div class="book-pages">
-    <label for="pages">Pages:</label>
+    <label for="pages" required>Pages:</label>
     <input type="number" id="pages" name="pages" min="1">
     </div>
     <div class="book-read">
@@ -55,10 +55,8 @@ function createForm() {
 
     form.addEventListener("submit", (e) => {
         e.preventDefault();
-        if (title.value != "" || author.value != "" || pages.value != "") {
-            addBookToLibrary();
-            createCard(myLibrary.length-1);
-        }
+        addBookToLibrary();
+        createCard(myLibrary.length-1);
     })
 
     newBook.classList.add("new-book");
